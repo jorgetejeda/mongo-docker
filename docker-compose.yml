@@ -1,0 +1,39 @@
+# Especificamos la version de docker compose
+version: "3.9"
+# Especificamos los contenedores que vamos a crear
+services:
+  # agregamos el nombre del contenedor
+  # vamos a especificar todas las cosas que hara el contendor de chanchito
+  chanchito:
+    # como estamos dentro proyecto solo agregamos un punto
+    build: .
+    # especificamos el puerto que vamos a utilizar HOST:CONTAINER
+    ports:
+      - "3000:3000"
+      # si queremos agregar mas puertos solo agregamos un guion y el puerto
+      # - "35729:35729"
+    # especificamos a que contenedor nos vamos a relacionar
+    links:
+      - monguito
+  monguito:
+    # En base a que imagen vamos a crear el contenedor
+    image: mongo
+    ports:
+      - "27017:27017"
+    # especificamos las variables de entorno
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: jtejeda
+      MONGO_INITDB_ROOT_PASSWORD: 123456
+    # especificamos el volumen que vamos a utilizar
+    # mongo-data es el nombre del volumen, que se especifica mas abajo
+    volumes:
+      # Esta es la ruta del volumen dentro del contenedor donde mongo guarda su informacion
+      - mongo-data:/data/db
+      # - otro-volumen-de-ejemplo
+      # mysql -> /var/lib/mysql
+      # postgres -> /var/lib/postgresql/data
+
+# Especificamos los volumenes que vamos a utilizar
+volumes:
+  mongo-data:
+  # otro-volumen-de-ejemplo:
