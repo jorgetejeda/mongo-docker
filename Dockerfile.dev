@@ -1,0 +1,14 @@
+FROM node:18
+
+# Comando Run nos sirve para ejecutar en la terminal
+RUN npm i -g nodemon
+RUN mkdir -p /home/app
+
+# Cuando estamos trabajando en desarrollo debemos especificarle la ruta en la que vamos a estar trabajando
+WORKDIR /home/app
+
+EXPOSE 3000
+
+# Nos sirve para ejecutar los scripts dentro del proyecto
+CMD ["nodemon", "index.js"]
+
