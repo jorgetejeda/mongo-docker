@@ -18,7 +18,7 @@ app.get('/', async (req, res) => {
 
 app.get('/crear', async (req, res) => {
   console.log('Creando animal')
-  await Animal.create({ name: 'Lion', type: 'Mammal' })
+  await Animal.create({ name: 'Shark', type: 'Fish' })
   res.send('Animal creado')
 })
 
